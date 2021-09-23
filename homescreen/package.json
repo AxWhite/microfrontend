@@ -1,0 +1,58 @@
+{
+  "name": "homescreen",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/main.js",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "antd": "^4.16.13",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1",
+    "webpack-server": "^0.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.15.5",
+    "@babel/preset-react": "7.14.5",
+    "babel-loader": "8.2.2",
+    "css-loader": "^6.3.0",
+    "external-remotes-plugin": "^1.0.0",
+    "html-webpack-plugin": "5.3.2",
+    "webpack": "5.52.1",
+    "webpack-cli": "4.8.0",
+    "webpack-dev-server": "4.2.1",
+    "webpack-livereload-plugin": "3.0.2"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

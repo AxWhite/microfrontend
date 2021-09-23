@@ -1,0 +1,5 @@
+{
+    "packages": ["container", "homescreen", "details"],
+    "version": "0.0.0"
+  }
+  
