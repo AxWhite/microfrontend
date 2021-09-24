@@ -41,7 +41,8 @@ module.exports = {
       name: "homescreen",
       filename: "remoteEntry.js",
       exposes: {
-        './HomescreenIndex': './src/index'
+        './HomescreenIndex': './src/index',
+        './Homescreen': './src/App'
       },
       shared: {
         react: {

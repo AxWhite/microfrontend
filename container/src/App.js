@@ -8,7 +8,7 @@ import AppLayout from './components/Layout';
 
 const defaultHistory = createBrowserHistory();
 
-const Homescreen = React.lazy(() => import('homescreen/HomescreenIndex'));
+const Homescreen = React.lazy(() => import('homescreen/Homescreen'));
 const Details = React.lazy(() => import('details/DetailsIndex'));
 
 function App({ history = defaultHistory }) {
@@ -18,13 +18,19 @@ function App({ history = defaultHistory }) {
       <BrowserRouter>
             <React.Fragment>
               <Switch>
-                <Route exact path="/homescreen" render={() => <Homescreen history={history} />} />
-                <Route exact path="/" render={() => <h1>Hello world</h1>} />
-                <Route exact path="/details/:id" render={() => <Details history={history} />} />
+                <Route exact path="/" render={() => 
+                  <React.Suspense fallback="Loading...">
+                    <Homescreen history={history}></Homescreen>
+                  </React.Suspense>
+                } />
+                <Route exact path="/details/:id" render={() => 
+                  <React.Suspense fallback="Loading...">
+                    <Details history={history} />
+                  </React.Suspense>
+                } />
               </Switch>
             </React.Fragment>
       </BrowserRouter>
-      <div id="root"></div>
     </AppLayout>  
 
   )
