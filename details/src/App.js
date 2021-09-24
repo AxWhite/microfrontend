@@ -1,5 +1,4 @@
 import React from 'react';
-import AppLayout from './components/Layout';
 import './App.css';
 import 'antd/dist/antd.css';
 import { Result, Button } from 'antd';
@@ -33,11 +32,7 @@ function App() {
     )
   }
 
-  return (
-    <AppLayout title={movie ? movie.title : null}>
-      {content}
-    </AppLayout>
-  );
+  return content;
 }
 
 export default App;
