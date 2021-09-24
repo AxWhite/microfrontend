@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Suspense, useEffect } from 'react';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { createBrowserHistory } from "history";
 
 import './App.css';
+import AppLayout from '../../homescreen/src/components/Layout';
+
+const defaultHistory = createBrowserHistory();
 
 const Homescreen = React.lazy(
   () => import('homescreen/HomescreenIndex')
@@ -16,18 +16,21 @@ const Details = React.lazy(
   () => import('details/DetailsIndex')
 )
 
-function App() {
+function App({ history = defaultHistory }) {
+
   return (
-    <Router>
-        <Switch>
-          <Route path="/details/:id">
-            <Details />
-          </Route>
-          <Route path="/">
-            <Homescreen />
-          </Route>
-        </Switch>
-    </Router>
+    <AppLayout>
+      <BrowserRouter>
+            <React.Fragment>
+              <Switch>
+                <Route exact path="/" render={() => <Homescreen history={history} />} />
+                <Route exact path="/about" render={() => 'Hello world'} />
+                <Route exact path="/details/:id" render={() => <Details history={history} />} />
+              </Switch>
+            </React.Fragment>
+      </BrowserRouter>
+    </AppLayout>  
+
   )
 }
 

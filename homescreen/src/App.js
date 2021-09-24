@@ -1,5 +1,4 @@
 import React from 'react';
-import AppLayout from './components/Layout';
 import './App.css';
 import 'antd/dist/antd.css';
 import { Result, Button } from 'antd';
@@ -7,7 +6,11 @@ import MoviesList from './components/MoviesList';
 import { useEffect, useState } from 'react';
 import useHttp from './hooks/use-http';
 
-function App() {
+import { createBrowserHistory } from "history";
+
+const defaultHistory = createBrowserHistory();
+
+function App({ history = defaultHistory }) {
   const [movies, setMovies] = useState([]);
   const { isLoading, error, sendRequest: fetchMovies } = useHttp();
 
@@ -21,7 +24,7 @@ function App() {
   }, [setMovies, fetchMovies]);
 
   if (!error) {
-    content = <MoviesList isLoading={isLoading} movies={movies}></MoviesList>
+    content = <MoviesList history={history} isLoading={isLoading} movies={movies}></MoviesList>
   } else {
     content = (
       <Result
@@ -33,11 +36,7 @@ function App() {
     )
   }
 
-  return (
-    <AppLayout>
-      {content}
-    </AppLayout>
-  );
+  return content;
 }
 
 export default App;

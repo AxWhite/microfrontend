@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Empty, Skeleton, Card, Avatar, Table   } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { useHistory, useLocation  } from "react-router-dom"
 
 import Movie from "./Movie";
 
@@ -12,8 +11,7 @@ const MoviesList = (props) => {
         column: '',
         direction: ''
     })
-    const history = useHistory()
-    const { search } = useLocation();
+    const history = props.history;
 
     let content = <Empty />;
     let tableContent = [];
@@ -122,10 +120,6 @@ const MoviesList = (props) => {
             params.delete(query.column)
         }
     }, [query, history])
-
-    if(search) {
-
-    }
 
     return (
         <>
