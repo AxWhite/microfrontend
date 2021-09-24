@@ -14,6 +14,7 @@ module.exports = {
     // static: path.join(__dirname, "dist"),
     port: 8081,
     liveReload: true,
+    historyApiFallback: true,
   },
   // output: {
   //   publicPath: "auto",

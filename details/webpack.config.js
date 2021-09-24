@@ -13,9 +13,9 @@ module.exports = {
   //   minimize: false,
   // },
   devServer: {
-    // hot: true,
-    // static: path.join(__dirname, "dist"),
+    hot: true,
     port: 8082,
+    historyApiFallback: true,
     // liveReload: false,
   },
   // output: {

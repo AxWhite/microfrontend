@@ -12,12 +12,10 @@ module.exports = {
     minimize: false,
   },
   devServer: {
-    hot: false,
+    hot: true,
     static: path.join(__dirname, "public"),
     port: 8080,
-    historyApiFallback: {
-      index: "index.html",
-    },
+    historyApiFallback: true,
   },
   output: {
     publicPath: "auto",
