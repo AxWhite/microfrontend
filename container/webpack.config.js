@@ -45,7 +45,8 @@ module.exports = {
       remotes: {
         homescreen: "homescreen@http://localhost:8081/remoteEntry.js",
         details: "details@http://localhost:8082/remoteEntry.js",
-      }
+      },
+      shared: ["react", "react-dom", "react-router-dom"]
     }),
     new ExternalTemplateRemotesPlugin(),
     new HtmlWebpackPlugin({

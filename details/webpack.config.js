@@ -46,6 +46,17 @@ module.exports = {
       exposes: {
         './DetailsIndex': './src/index',
       },
+      shared: {
+        react: {
+          import: 'react',
+          shareKey: 'react',
+          shareScope: 'default',
+          singleton: true,
+        },
+        'react-dom': {
+          singleton: true,
+        },
+      }
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
