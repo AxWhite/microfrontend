@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from 'react';
 
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
-
+import 'antd/dist/antd.css';
 import './App.css';
 import AppLayout from '../../homescreen/src/components/Layout';
 
@@ -24,7 +24,7 @@ function App({ history = defaultHistory }) {
             <React.Fragment>
               <Switch>
                 <Route exact path="/" render={() => <Homescreen history={history} />} />
-                <Route exact path="/about" render={() => 'Hello world'} />
+                <Route exact path="/about" render={() => <h1>Hello world</h1>} />
                 <Route exact path="/details/:id" render={() => <Details history={history} />} />
               </Switch>
             </React.Fragment>
