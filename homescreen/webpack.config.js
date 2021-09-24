@@ -6,20 +6,19 @@ const path = require("path");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
-  // entry: "./src/index",
+  entry: "./src/index",
   mode: "development",
   devtool: "source-map",
   devServer: {
     hot: true,
-    // static: path.join(__dirname, "dist"),
     port: 8081,
     liveReload: true,
     historyApiFallback: true,
   },
-  // output: {
-  //   publicPath: "auto",
-  //   clean: true,
-  // },
+  output: {
+    publicPath: "auto",
+    clean: true,
+  },
   module: {
     rules: [
       {

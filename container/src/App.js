@@ -1,6 +1,6 @@
-import React, { Suspense, useEffect } from 'react';
+import React from 'react';
 
-import { Router, Switch, Route, Redirect, Link } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import 'antd/dist/antd.css';
 import './App.css';
@@ -22,7 +22,6 @@ function App({ history = defaultHistory }) {
                 <Homescreen history={history} />
               </React.Suspense>
             } />
-            <Route exact path="/about" render={() => <h1>Hello World</h1>} />
             <Route exact path="/details/:id" render={() =>
               <React.Suspense fallback="Loading...">
                 <Details history={history} />
