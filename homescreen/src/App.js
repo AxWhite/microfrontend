@@ -5,8 +5,8 @@ import { Result, Button } from 'antd';
 import MoviesList from './components/MoviesList';
 import { useEffect, useState } from 'react';
 import useHttp from './hooks/use-http';
-
 import { createBrowserHistory } from "history";
+import { Router } from 'react-router-dom';
 
 const defaultHistory = createBrowserHistory();
 
@@ -17,6 +17,10 @@ function App({ history = defaultHistory }) {
   let content = null;
 
   useEffect(() => {
+    console.log('[OnInit]', 'Homescreen');
+  }, []);
+
+  useEffect(() => {
     fetchMovies(
       { url: '/films' }, 
       (movies) => setMovies(movies)
@@ -24,7 +28,7 @@ function App({ history = defaultHistory }) {
   }, [setMovies, fetchMovies]);
 
   if (!error) {
-    content = <MoviesList history={history} isLoading={isLoading} movies={movies}></MoviesList>
+    content = <MoviesList isLoading={isLoading} movies={movies}></MoviesList>
   } else {
     content = (
       <Result
@@ -36,7 +40,11 @@ function App({ history = defaultHistory }) {
     )
   }
 
-  return content;
+  return (
+    <Router history={history}>
+      {content}
+    </Router>
+  )
 }
 
 export default App;

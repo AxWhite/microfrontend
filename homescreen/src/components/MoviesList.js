@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Empty, Skeleton, Card, Avatar, Table   } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Empty, Skeleton, Card, Avatar, Table  } from 'antd';
+import { EllipsisOutlined } from '@ant-design/icons';
 
 import Movie from "./Movie";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -11,7 +12,10 @@ const MoviesList = (props) => {
         column: '',
         direction: ''
     })
-    const history = props.history;
+    const history = useHistory();
+    const location = useLocation();
+
+    console.log('LOCATION', location);
 
     let content = <Empty />;
     let tableContent = [];
@@ -67,7 +71,8 @@ const MoviesList = (props) => {
             title: 'Title',
             dataIndex: 'title',
             key: 'title',
-            sorter: true
+            sorter: true,
+            render: (text, record) => <Link to={getUrl(record)}>{text}</Link>,
         },
         {
             title: 'Release Date',
@@ -105,10 +110,9 @@ const MoviesList = (props) => {
         }
     }
 
-    const openDeepLink = (record) => {
+    const getUrl = (record) => {
         const colorValue = record.color.props.style.backgroundColor.substring(1);
-        console.log('NAVIGATE')
-        history.push(`/details/${record.key}?color=${colorValue}`)
+        return `/details/${record.key}?color=${colorValue}`;
     }
 
     useEffect(() => {
@@ -127,12 +131,7 @@ const MoviesList = (props) => {
                 locale={{ emptyText: 'Waiting for list of cool movies...' }}
                 dataSource={tableContent}
                 columns={columns}
-                onChange={onChange}
-                onRow={(record, rowIndex) => {
-                    return {
-                        onClick: () => openDeepLink(record)
-                    };
-                }}/>
+                onChange={onChange} />
             <div style={{display: "none", gap: '1em', flexWrap: "wrap"}}>{content}</div>
         </>
     )

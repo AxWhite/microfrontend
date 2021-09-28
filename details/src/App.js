@@ -5,19 +5,27 @@ import { Result, Button } from 'antd';
 import { useEffect, useState } from 'react';
 import useHttp from './hooks/use-http';
 import MovieDetails from './components/MovieDetails';
+import { createBrowserHistory } from "history";
+import { Router } from 'react-router-dom';
 
-function App() {
+const defaultHistory = createBrowserHistory();
+
+function App({ history = defaultHistory }) {
   const [movie, setMovie] = useState();
   const { isLoading, error, sendRequest: fetchMovie } = useHttp();
   const movieNum = window.location.pathname.split('/')[2] || 1;
   let content = null;
 
   useEffect(() => {
+    console.log('OnInit', 'Details');
+  }, []);
+
+  useEffect(() => {
     fetchMovie(
       { url: `https://swapi.dev/api/films/${movieNum}` },
       (movie) => setMovie(movie)
     );
-  }, [setMovie, fetchMovie]);
+  }, [setMovie, fetchMovie, movieNum]);
 
   if (!error) {
     content = <MovieDetails isLoading={isLoading} movie={movie} />
@@ -32,7 +40,11 @@ function App() {
     )
   }
 
-  return content;
+  return (
+    <Router history={history}>
+      {content}
+    </Router>
+  );
 }
 
 export default App;
